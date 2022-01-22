@@ -8,16 +8,16 @@ export default function Home() {
   const [movieTrending, setMovieTrending] = useState([]);
   const location = useLocation();
 
-  // useEffect(() => {
-  //   getMovieTrending().then((data) => {
-  //     setMovieTrending(data.results);
-  //   });
-  // }, []);
+  useEffect(() => {
+    getMovieTrending().then((data) => {
+      setMovieTrending(data.results);
+    });
+  }, []);
 
   return (
     <>
       <Title>Trending today</Title>
-      {/* <MovieList movieData={movieTrending} location={location} /> */}
+      <MovieList movieData={movieTrending} location={location} />
     </>
   );
 }

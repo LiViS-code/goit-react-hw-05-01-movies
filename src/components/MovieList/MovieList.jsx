@@ -3,8 +3,7 @@ import { ListItem, LinkTo, List } from "../../App.styled";
 export default function MovieList({ movieData, location }) {
   return (
     <>
-      <p>Список фильмов</p>
-      {/* <List>
+      <List>
         {movieData.map(({ id, original_title }) => {
           return (
             <ListItem key={id}>
@@ -14,7 +13,7 @@ export default function MovieList({ movieData, location }) {
             </ListItem>
           );
         })}
-      </List> */}
+      </List>
     </>
   );
 }

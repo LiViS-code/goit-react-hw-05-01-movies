@@ -14,17 +14,17 @@ export default function MoviesPage() {
     navigation({ ...location, search: `query=${request}` });
   };
 
-  // useEffect(() => {
-  //   if (!searchQuery) return;
-  //   getMovieByName(searchQuery).then((data) => {
-  //     setMovieData(data.results);
-  //   });
-  // }, [searchQuery]);
+  useEffect(() => {
+    if (!searchQuery) return;
+    getMovieByName(searchQuery).then((data) => {
+      setMovieData(data.results);
+    });
+  }, [searchQuery]);
 
   return (
     <>
       <SearchBar setSearch={setSearch} />
-      {/* {movieData && <MovieList movieData={movieData} location={location} />} */}
+      {movieData && <MovieList movieData={movieData} location={location} />}
     </>
   );
 }
