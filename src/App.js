@@ -1,25 +1,30 @@
-import logo from "./logo.svg";
-import "./App.css";
+import { Routes, Route } from "react-router-dom";
+import { lazy, Suspense } from "react";
+import NotfoundPage from "./components/NotfoundPage/NotfoundPage";
 
-function App() {
+export default function App() {
+  const Layout = lazy(() => import("./components/Layout/Layout"));
+  const Home = lazy(() => import("./routes/Home/Home"));
+  const MoviesPage = lazy(() => import("./routes/MoviesPage/MoviesPage"));
+  const MovieDetailsPage = lazy(() =>
+    import("./routes/MovieDetailsPage/MovieDetailsPage")
+  );
+  const Cast = lazy(() => import("./components/Cast/Cast"));
+  const Rewiews = lazy(() => import("./components/Reviews/Reviews"));
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <Suspense fallback={<div>Loading...</div>}>
+      <Routes>
+        <Route path="/" element={<Layout />}>
+          <Route index element={<Home />} />
+          <Route path="movies" element={<MoviesPage />} />
+          <Route path="movies/:movieId" element={<MovieDetailsPage />}>
+            <Route path="cast" element={<Cast />} />
+            <Route path="reviews" element={<Rewiews />} />
+          </Route>
+          {/* <Route path="*" element={<NotfoundPage />} /> */}
+        </Route>
+      </Routes>
+    </Suspense>
   );
 }
-
-export default App;
